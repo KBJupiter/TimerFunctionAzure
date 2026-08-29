@@ -13,7 +13,7 @@ permissions:
 env:
   AZURE_FUNCTIONAPP_NAME: func-timerfunction-demo001
   RESOURCE_GROUP: rg-Timerazurefirstfunction
-  STORAGE_ACCOUNT_NAME: timerazurefunction
+  STORAGE_ACCOUNT_NAME: sttimerfuncdemo001
   CONTAINER_NAME: function-releases
   DOTNET_VERSION: '10.0.x'
   PROJECT_PATH: '.'
