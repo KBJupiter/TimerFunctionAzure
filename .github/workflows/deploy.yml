@@ -69,10 +69,10 @@ jobs:
             --auth-mode login \
             --overwrite true
 
-      - name: Generate read-only SAS URL for the package
+       - name: Generate read-only SAS URL for the package
         id: sas
         run: |
-          EXPIRY=$(date -u -d "+1 year" '+%Y-%m-%dT%H:%MZ')
+          EXPIRY=$(date -u -d "+6 days" '+%Y-%m-%dT%H:%MZ')
           SAS=$(az storage blob generate-sas \
             --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
             --container-name ${{ env.CONTAINER_NAME }} \
@@ -84,7 +84,7 @@ jobs:
             --https-only \
             --output tsv)
           echo "package_url=https://${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.CONTAINER_NAME }}/functionapp-${{ github.sha }}.zip?${SAS}" >> "$GITHUB_OUTPUT"
-
+          
       - name: Point Function App at the package
         run: |
           az functionapp config appsettings set \
